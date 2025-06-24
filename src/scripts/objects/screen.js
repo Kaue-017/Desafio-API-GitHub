@@ -29,7 +29,6 @@ const screen = {
               </div>
              </a>
             </li>`;
-            console.log(repo)
         })
         if (user.repositories.length > 0) {
             this.userProfile.innerHTML +=
