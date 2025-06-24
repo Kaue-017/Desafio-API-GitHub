@@ -51,13 +51,11 @@ const screen = {
         if (user.events.length === 0) {
             eventItens += `<li>Este usuario não tem nenhum evento recente</li>`
         }
-        if (user.repositories.length > 0) {
             this.userProfile.innerHTML +=
                 `<div class="events">
             <h2>Eventos</h2>
             <ul>${eventItens}</ul>
         </div>`;
-        }
     },
     renderNotFound() {
         this.userProfile.innerHTML = "<h3>Usuário não encontrado</h3>";
