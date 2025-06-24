@@ -1,11 +1,12 @@
 import { getUser } from "./services/user.js";
 import { getRepositorie } from "./services/repositorie.js";
+import { getEvents } from "./services/events.js";
 import { user } from "./objects/user.js";
-import { screen } from "./objects/screen.js";
+import { screen } from "./objects/screen";
 
 document.getElementById('btn-search').addEventListener('click', () => {
     const userName = document.getElementById('input-search').value;
-    if(validadeInput(userName)) return;
+    if (validadeInput(userName)) return;
     getUserData(userName);
 })
 
@@ -15,13 +16,13 @@ document.getElementById('input-search').addEventListener('keyup', (e) => {
     const EnterKeyPressed = key === 13;
 
     if (EnterKeyPressed) {
-        if(validadeInput(userName)) return;
+        if (validadeInput(userName)) return;
         getUserData(userName);
     }
 })
 
 function validadeInput(userName) {
-    if(userName.length === 0) {
+    if (userName.length === 0) {
         alert('Preencha o campo com o nome do usuario!!');
         return true;
     }
@@ -29,12 +30,16 @@ function validadeInput(userName) {
 
 async function getUserData(userName) {
     const userResponse = await getUser(userName);
-    if(userResponse.message === "Not Found") {
+    if (userResponse.message === "Not Found") {
         screen.renderNotFound();
         return;
     }
     const repositoriesResponse = await getRepositorie(userName);
     user.setInfo(userResponse);
     user.setRepositories(repositoriesResponse);
-    screen.renderUser(user);;
+    
+    const eventsResponse = await getEvents(userName)
+    user.setEvents(eventsResponse)
+    
+    screen.renderUser(user);
 }
