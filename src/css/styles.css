@@ -155,7 +155,7 @@ main {
 }
 
 .container .profile-data .repositories ul li a {
-  padding: 20px;
+  padding: 13px 20px;
   border: 1px solid grey;
   margin: 20px;
   display: block;
@@ -167,6 +167,8 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+  justify-content: center;
+  margin-top: 8px;
 }
 
 .container .profile-data .repositories ul li a span {
